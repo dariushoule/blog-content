@@ -1,5 +1,7 @@
 ---
 title: "[teardown] microsoft login phishing site"
+description: 'Phishing site teardown: web, reversing, obfuscation.'
+images: ['img/microsoft-phish/phish.png']
 date: 2024-12-18T00:00:00+00:00
 draft: false
 ---
