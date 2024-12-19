@@ -8,7 +8,7 @@ Hey space travelers 🚀
 
 Today we'll be doing a teardown of a microsoft login phishing site.
 
-The origin of this scam was an email: [edcb7cd22eb3cf1f5879b9d847d809bf](https://app.any.run/tasks/dcc3ee7c-7d0f-4b79-aec2-c45057c49ba4)
+The origin of this scam was the following email sample: [edcb7cd22eb3cf1f5879b9d847d809bf](https://app.any.run/tasks/dcc3ee7c-7d0f-4b79-aec2-c45057c49ba4)
 
 ## First Contact (Script Loader)
 
@@ -35,7 +35,7 @@ By excluding the enclosing [Function constructor](https://developer.mozilla.org/
 
 ![payload 1](/img/microsoft-phish/payload-1.png)
 
-Similarly evaluating the `hawthorn` variable in the deobfuscated content yields the URL for a second payload.
+Similarly evaluating the `hawthorn` variable in the partially deobfuscated content yields the URL for a second payload.
 
 ```
 hxxps [:] // paterbrothers [.] com / res444 [.] php?2-68747470733a2f2f44374d2e6b637a63796c766a7562752e72752f784a456f6233562f-butterbur
@@ -53,7 +53,7 @@ Content-Disposition: attachment;
 ```
 
 In doing so they rely on coercing the victim to download the HTML page and leverage their unsandboxed browser
-to execute their payload.
+to execute the payload.
 
 
 ## Second Stage (Configurable Redirector)
@@ -102,12 +102,12 @@ Attempting ascending numbers for deploy technique reveals:
 
 ### Third Stage (Anti-Analysis)
 
-The third payload delivered in this scam is a malformed HTML document peppered with motivational quotes
+The third payload delivered in this scam is a malformed HTML document peppered with motivational quotes (fun 😂)
 and obfuscated javascript payloads. 
 
 ![payload 3](/img/microsoft-phish/payload-3.png)
 
-The obfuscation can be removed using a little automation 🐍
+The obfuscation can be cleaned up using a little automation 🐍
 
 {{< highlight python >}}
 import base64
@@ -170,10 +170,10 @@ invoking the `debugger;` builtin to stop execution when devtools are open. Befor
 manual breakpoint is triggered a timer is recorded. If a significant enough time has elapsed the 
 payload knows its being inspected and it blackholes the client.
 
-Disabling breakpoints is sufficient to bypass this check.
+Setting your inspector to disable stopping on breakpoints is sufficient to bypass this check.
 
 Passing all of these guards leads us to the meat of the phish, the payload now negotiates with the
-server to generate a single use session used to phish a microsoft login.
+server to generate a single use session.
 
 ```
 hxxps [:] // d7m [.] kczcylvjubu [.] ru / OJPCFBWMLNOOUZRVYVUHTRIPJ6WVDQNKDO?769299870200133h7j7msm09i86lv
@@ -184,27 +184,26 @@ hxxps [:] // d7m [.] kczcylvjubu [.] ru / OJPCFBWMLNOOUZRVYVUHTRIPJ6WVDQNKDO?769
 ![phish](/img/microsoft-phish/phish.png)
 
 I found a direct path to the most interesting parts of the final payload by observing the network traffic and 
-inspecting invokers at each layer of the callstack. 
+inspecting each layer of the callstack. 
 
-The payload takes the username and password of user and attempts to validate it. The username and password are
-encrypted before sending to the attackers. 
+The payload takes the username and password of user and attempts to validate it. To keep traffic stealthier against inspection the username and password are encrypted before sending to the attackers. 
 
 ![phish](/img/microsoft-phish/network.png)
 
-In examining the callstacks for the network requests we're greeting with a new heavier layer of obfuscation (truncated for brevity):
+In examining the callstacks for the network requests we're greeted with a new heavier layer of obfuscation (truncated for brevity):
 
 {{< highlight javascript >}}
 const _0x21c50a=_0x1534;(function(_0x381381,_0x47d76d){const _0x94f40=_0x1534,_0x3a1ac3=_0x381381();while(!![]){try{const _0x30cc6a=parseInt(_0x94f40(0x2ee))/0x1+-parseInt(_0x94f40(0x2d3))/0x2+-parseInt(_0x94f40(0x1d2))/0x3+parseInt(_0x9...
 {{< /highlight >}}
 
 
-The obfuscation consists of variable name obfuscation and a strings table. A strategy for recovering the strings table can be determined trivially by dynamically analyzing its lookup behavior.
+The obfuscation consists of some control flow redirection, variable name obfuscation, and a strings table. A strategy for recovering the strings table can be determined trivially by dynamically analyzing its lookup behavior.
 
 ![phish](/img/microsoft-phish/strings-arr.png)
 
 The string lookup method appears to be a simple index lookup with a fixed offset.
 
-We can deobfuscate well enough to analyze this payload by reconstructing strings and running the result through prettier.
+We can deobfuscate well enough to analyze this payload by reconstructing strings and running the result through [https://prettier.io/](prettier).
 
 
 {{< highlight python >}}
@@ -245,9 +244,9 @@ Note that function names remained intact even after obfuscation, this is helpful
 
 #### Capabilities
 
-- The attackers have the ability to proxy the authorization real-time and prompt for multiple methods of 2fa
+- The attackers have the ability to validate & proxy authentication real-time, prompting for multiple methods of 2fa
 - The number of supported authentication mechanisms is impressive, covering adfs and okta SSO
-  - The attackers handle failure cases well, proxying real failure information to users
+  - The attackers handle failure cases well, relaying real failure information to users
 - Authentication data passed by the users is AES encrypted using a hardcoded key
 
 {{< highlight python >}}
