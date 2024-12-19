@@ -1,11 +1,11 @@
 {{ if site.Params.theme_config.isShowFooter }}
-    {{ with resources.Get "layouts/footer.md" }}
-        {{ .Content | markdownify }}
-    {{ else }}
-        {{ warnf "layouts/footer.md file is not found, fallback to the default copyright" }}
-        <footer class="site-footer">
-            <p><small>Opinions expressed are solely my own and do not express the views or opinions of my employer.</small>
-            <p><small>&copy; {{ now.Format "2006" }} Darius Houle</small></p>
-        </footer>
-    {{ end }}
+<footer class="site-footer">
+  <p>
+    <small
+      >Opinions expressed are solely my own and do not express the views or
+      opinions of my employer.</small
+    >
+  </p>
+  <p><small>&copy; {{ now.Format "2006" }} Darius Houle</small></p>
+</footer>
 {{ end }}

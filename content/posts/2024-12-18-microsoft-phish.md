@@ -52,7 +52,7 @@ Content-Disposition: attachment;
  filename=vRecord__0064secs__biolegend.com.html
 ```
 
-In doing so they rely on coercing the victim to download the HTML page and leveraging their unsandboxed browser
+In doing so they rely on coercing the victim to download the HTML page and leverage their unsandboxed browser
 to execute their payload.
 
 
