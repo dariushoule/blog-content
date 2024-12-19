@@ -4,7 +4,8 @@
     {{ else }}
         {{ warnf "layouts/footer.md file is not found, fallback to the default copyright" }}
         <footer class="site-footer">
-            <p>&copy; {{ now.Format "2006" }} {{ site.Title }}</p>
+            <p><small>Opinions expressed are solely my own and do not express the views or opinions of my employer.</small>
+            <p><small>&copy; {{ now.Format "2006" }} Darius Houle</small></p>
         </footer>
     {{ end }}
 {{ end }}

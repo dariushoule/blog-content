@@ -1,6 +1,9 @@
 +++
 title =  ""
-date = 2022-08-25T21:30:04+08:00
+date = 2024-12-18T00:00:00+00:00
 draft = false
 +++
-To edit this find file nostyleplease/content/_index.md
+
+beep cuts is the personal blog of [Dariush Houle (Darbonzo)](mailto:dariushoule@gmail.com)
+
+I like to post about reverse engineering, guided malware teardowns, and retro computing.
