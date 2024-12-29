@@ -22,7 +22,7 @@
   }
 
   pre {
-    background: $--bg-color;
+    background: #94949434;
   }
 
   code:not(pre > code) {
@@ -77,7 +77,14 @@ html { height: 100%; }
 body {
   font-family: monospace;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   margin: 0;
   min-height: 100%;
   overflow-wrap: break-word;
