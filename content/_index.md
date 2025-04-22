@@ -7,15 +7,15 @@ draft = false
 beep cuts is the personal blog of [Dariush Houle (Darbonzo)](mailto:darius@x64.ooo)
 
 <div style="margin: 0 0 24px 40px">
-<a href="https://www.linkedin.com/in/dariushoule/" target=blank>
+<a href="https://www.linkedin.com/in/dariushoule/" target=blank style="text-decoration: none;">
     <img src="/img/linkedin.svg" width=32 height=32 style="display: inline-block; position: relative; top: 9px;" />
 </a>
 
-<a href="https://bsky.app/profile/darbonzo.bsky.social" target=blank>
+<a href="https://bsky.app/profile/darbonzo.bsky.social" target=blank style="text-decoration: none;">
     <img src="/img/bluesky.svg" width=32 height=32 style="display: inline-block; position: relative; top: 9px;" />
 </a>
 
-<a href="https://github.com/dariushoule/" target=blank>
+<a href="https://github.com/dariushoule/" target=blank style="text-decoration: none;">
     <img src="/img/github.svg" width=32 height=32 style="display: inline-block; position: relative; top: 9px;" />
 </a>
 </div>
