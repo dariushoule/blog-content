@@ -18,6 +18,10 @@ beep cuts is the personal blog of [Dariush Houle (Darbonzo)](mailto:darius@x64.o
 <a href="https://github.com/dariushoule/" target=blank style="text-decoration: none;">
     <img src="/img/github.svg" width=32 height=32 style="display: inline-block; position: relative; top: 9px;" />
 </a>
+
+<a href="https://x.com/dariushoule" target=blank style="text-decoration: none;">
+    <img src="/img/x.svg" width=32 height=32 style="display: inline-block; position: relative; top: 9px;" />
+</a>
 </div>
 
 I like to post about reverse engineering, guided malware teardowns, and retro computing.
