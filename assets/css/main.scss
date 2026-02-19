@@ -75,7 +75,8 @@ body[a="light"] { @include light-appearance; }
 html { height: 100%; }
 
 body {
-  font-family: monospace;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
